@@ -8,7 +8,7 @@ interface Props {
 const GameHeading = ({ gameQuery }: Props) => {
   return (
     <Heading as="h1" marginBottom={6} fontSize="5xl">
-      {gameQuery.genre?.name} {gameQuery.platform?.name} Game
+      {gameQuery.platform?.name} {gameQuery.genre?.name} Games
     </Heading>
   );
 };
