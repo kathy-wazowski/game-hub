@@ -20,8 +20,8 @@ const useGames = (gameQuery: GameQuery) => {
       //这里的格式是config的格式
       apiClient.get({
         params: {
-          genres: gameQuery.genre?.id,
-          parent_platforms: gameQuery.platform?.id,
+          genres: gameQuery.genreId,
+          parent_platforms: gameQuery.platformId,
           ordering: gameQuery.ordering,
           search: gameQuery.search,
           page: pageParam,

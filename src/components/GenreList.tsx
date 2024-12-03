@@ -13,10 +13,10 @@ import useGenre, { Genre } from "../hooks/useGenre";
 
 interface Props {
   onSelect: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenreId?: number;
 }
 
-const GenreList = ({ onSelect, selectedGenre }: Props) => {
+const GenreList = ({ onSelect, selectedGenreId }: Props) => {
   const { data, error, isLoading } = useGenre();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -44,7 +44,7 @@ const GenreList = ({ onSelect, selectedGenre }: Props) => {
                 variant="link"
                 whiteSpace="normal"
                 textAlign="left"
-                fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
+                fontWeight={selectedGenreId === genre.id ? "bold" : "normal"}
               >
                 {genre.name}
               </Button>
