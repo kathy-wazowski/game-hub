@@ -10,15 +10,14 @@ import {
 import getCroppedImageURL from "../services/image-url";
 import GenreSkeleton from "./GenreSkeleton";
 import useGenre, { Genre } from "../hooks/useGenre";
+import useGames from "../hooks/useGames";
+import useGameStore from "../store";
 
-interface Props {
-  onSelect: (genre: Genre) => void;
-  selectedGenreId?: number;
-}
-
-const GenreList = ({ onSelect, selectedGenreId }: Props) => {
+const GenreList = () => {
   const { data, error, isLoading } = useGenre();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const selectedGenreId = useGameStore((s) => s.gameQuery.genreId);
+  const setGenre = useGameStore((s) => s.setGenre);
 
   if (error) return null;
 
@@ -39,7 +38,7 @@ const GenreList = ({ onSelect, selectedGenreId }: Props) => {
                 objectFit="cover"
               />
               <Button
-                onClick={() => onSelect(genre)}
+                onClick={() => setGenre(genre.id)}
                 fontSize="lg"
                 variant="link"
                 whiteSpace="normal"

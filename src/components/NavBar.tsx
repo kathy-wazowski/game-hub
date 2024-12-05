@@ -9,13 +9,11 @@ import ColorModeSwitch from "./ColorModeSwitch";
 import logo from "../assets/logo.webp";
 import { IoIosSearch } from "react-icons/io";
 import { useRef, useState } from "react";
+import useGameStore from "../store";
 
-interface Props {
-  onChangeSearch: (searchStr: string) => void;
-}
-
-const NavBar = ({ onChangeSearch }: Props) => {
+const NavBar = () => {
   const ref = useRef<HTMLInputElement>(null);
+  const setSearch = useGameStore((s) => s.setSearch);
   return (
     <HStack padding="10px">
       <Image boxSize="60px" src={logo} />
@@ -23,7 +21,7 @@ const NavBar = ({ onChangeSearch }: Props) => {
         style={{ width: "100%" }}
         onSubmit={(e) => {
           e.preventDefault();
-          if (ref.current) onChangeSearch(ref.current.value);
+          if (ref.current) setSearch(ref.current.value);
         }}
       >
         <InputGroup borderRadius="100%">

@@ -1,8 +1,8 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
-import { GameQuery } from "../App";
 import APIClient, { FetchResponse } from "../services/api-client";
 import { Platform } from "./usePlatform";
 import ms from "ms";
+import useGameStore from "../store";
 
 export interface Game {
   id: number;
@@ -13,7 +13,8 @@ export interface Game {
   rating_top: number;
 }
 
-const useGames = (gameQuery: GameQuery) => {
+const useGames = () => {
+  const gameQuery = useGameStore((s) => s.gameQuery); //这里一定要放在第一个，不然报warning
   const apiClient = new APIClient<Game>("/games"); //这里忘了写<Game>，会导致报错
   return useInfiniteQuery<FetchResponse<Game>, Error>({
     queryKey: ["games", gameQuery], //这样子在 gameQuery 改变的情况下可以refetch
