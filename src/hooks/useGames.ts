@@ -1,19 +1,8 @@
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import APIClient, { FetchResponse } from "../services/api-client";
-import { Platform } from "./usePlatform";
 import ms from "ms";
 import useGameStore from "../store";
-
-export interface Game {
-  id: number;
-  name: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number;
-  rating_top: number;
-  slug: string;
-  description: string;
-}
+import { Game } from "../entities/Game";
 
 const useGames = () => {
   const gameQuery = useGameStore((s) => s.gameQuery); //这里一定要放在第一个，不然报warning

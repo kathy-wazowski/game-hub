@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import APIClient from "../services/api-client";
-import { Game } from "./useGames";
+import { Game } from "../entities/Game";
 import { useQuery } from "@tanstack/react-query";
 import ms from "ms";
 
