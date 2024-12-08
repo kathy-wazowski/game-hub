@@ -27,6 +27,9 @@ class APIClient<T> {
         .then((res) => res.data)
     );
   };
+  getSingle = (config?: AxiosRequestConfig) => {
+    return axiosInstance.get<T>(this.endpoint, config).then((res) => res.data);
+  };
 }
 
 export default APIClient;
